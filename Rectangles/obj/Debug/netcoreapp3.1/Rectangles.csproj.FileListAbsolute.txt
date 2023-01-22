@@ -1,0 +1,14 @@
+C:\Users\aaron\source\repos\Rectangles\Rectangles\bin\Debug\netcoreapp3.1\Rectangles.exe
+C:\Users\aaron\source\repos\Rectangles\Rectangles\bin\Debug\netcoreapp3.1\Rectangles.deps.json
+C:\Users\aaron\source\repos\Rectangles\Rectangles\bin\Debug\netcoreapp3.1\Rectangles.runtimeconfig.json
+C:\Users\aaron\source\repos\Rectangles\Rectangles\bin\Debug\netcoreapp3.1\Rectangles.runtimeconfig.dev.json
+C:\Users\aaron\source\repos\Rectangles\Rectangles\bin\Debug\netcoreapp3.1\Rectangles.dll
+C:\Users\aaron\source\repos\Rectangles\Rectangles\bin\Debug\netcoreapp3.1\Rectangles.pdb
+C:\Users\aaron\source\repos\Rectangles\Rectangles\obj\Debug\netcoreapp3.1\Rectangles.csproj.AssemblyReference.cache
+C:\Users\aaron\source\repos\Rectangles\Rectangles\obj\Debug\netcoreapp3.1\Rectangles.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aaron\source\repos\Rectangles\Rectangles\obj\Debug\netcoreapp3.1\Rectangles.AssemblyInfoInputs.cache
+C:\Users\aaron\source\repos\Rectangles\Rectangles\obj\Debug\netcoreapp3.1\Rectangles.AssemblyInfo.cs
+C:\Users\aaron\source\repos\Rectangles\Rectangles\obj\Debug\netcoreapp3.1\Rectangles.csproj.CoreCompileInputs.cache
+C:\Users\aaron\source\repos\Rectangles\Rectangles\obj\Debug\netcoreapp3.1\Rectangles.dll
+C:\Users\aaron\source\repos\Rectangles\Rectangles\obj\Debug\netcoreapp3.1\Rectangles.pdb
+C:\Users\aaron\source\repos\Rectangles\Rectangles\obj\Debug\netcoreapp3.1\Rectangles.genruntimeconfig.cache
