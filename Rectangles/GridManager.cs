@@ -59,7 +59,7 @@ namespace Rectangles
             return Rectangles.Find(x => coordX >= x.PosX && coordX < (x.PosX + x.SizeX) && coordY >= x.PosY && coordY < (x.PosY + x.SizeY));
         }
 
-        public Coordinate getCoordinates()
+        public Coordinate getCoordinates(bool withinGrid = true)
         {
             do
             {
@@ -85,12 +85,18 @@ namespace Rectangles
                     Console.WriteLine("Invalid input format, try again!");
                     continue;
                 }
-
-                return new Coordinate()
+                var newCoord = new Coordinate()
                 {
                     X = coordX,
                     Y = coordY
                 };
+                if (withinGrid && !newCoord.isWithingrid(this.Grid))
+                {
+                    Console.WriteLine("invalid coordinate, try again!");
+                    continue;
+                }
+
+                return newCoord;
             } while (true);
           
         }
@@ -98,15 +104,20 @@ namespace Rectangles
         public void addRectangle(Coordinate startPos, Coordinate rectSize)
         {
 
-            if (startPos.X < 0 || startPos.Y < 0 || startPos.X >= this.Grid.SizeX || startPos.Y >= this.Grid.SizeY)
+            if (!startPos.isWithingrid(this.Grid))
             {
                 Console.WriteLine("Invalid starting position!");
                 Console.ReadKey();
                 return;
             }
 
-         
-            if (startPos.X + rectSize.X -1 >= this.Grid.SizeX || startPos.Y + rectSize.Y -1 >= this.Grid.SizeY)
+            var endPoint = new Coordinate()
+            {
+                X = startPos.X + rectSize.X - 1,
+                Y = startPos.Y + rectSize.Y - 1
+            };
+
+            if (!endPoint.isWithingrid(this.Grid))
             {
                 Console.WriteLine("Rectangle size going out of bounds.");
                 Console.ReadKey();
@@ -146,7 +157,7 @@ namespace Rectangles
         public void findRectanglePrompt(Coordinate target)
         {
 
-            if (target.X < 0 || target.Y < 0 || target.X > this.Grid.SizeX || target.Y > this.Grid.SizeY)
+            if (!target.isWithingrid(this.Grid))
             {
                 Console.WriteLine("Invalid Target Coordinate!");
                 Console.ReadKey();
@@ -170,7 +181,7 @@ namespace Rectangles
 
         public void removeRectangle(Coordinate target)
         {
-            if (target.X < 0 || target.Y < 0 || target.X > this.Grid.SizeX || target.Y > this.Grid.SizeY)
+            if (!target.isWithingrid(this.Grid))
             {
                 Console.WriteLine("Invalid Target Coordinate!");
                 Console.ReadKey();

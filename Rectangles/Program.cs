@@ -15,7 +15,7 @@ namespace Rectangles
             do
             {
                 Console.Write("Input size (X,Y) from 5 to 25:");
-                gridSize = grid.getCoordinates();
+                gridSize = grid.getCoordinates(false);
 
                 if(gridSize == null)
                     return;
