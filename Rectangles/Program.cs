@@ -16,21 +16,24 @@ namespace Rectangles
             {
                 Console.Write("Input size (X,Y) from 5 to 25:");
                 gridSize = grid.getCoordinates(false);
-
-                if(gridSize == null)
+                if (gridSize == null)
                     return;
 
-                if(gridSize.X < 5 || gridSize.X > 25 || gridSize.Y < 5 || gridSize.Y > 25)
+                try
                 {
-                    Console.WriteLine("Invalid grid size!");
+                    grid.setSize(gridSize);
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
                     continue;
                 }
-
+              
+             
                 break;
 
             } while (true);
 
-            grid.setSize(gridSize);
+         
 
             do
             {
@@ -61,21 +64,61 @@ namespace Rectangles
                         var rectSize = grid.getCoordinates();
                         if (rectSize == null) continue;
 
-                        grid.addRectangle(startPos, rectSize);
+                        try
+                        {
+                            var result = grid.addRectangle(startPos, rectSize);
+                            if (result)
+                            {
+                                Console.WriteLine("Rectangle Added!");
+                                Console.ReadKey();
+                            }
+                        } catch(Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey();
+                        }
+                     
+                      
                         break;
                     case '2':
                         Console.Write("Enter Target Coordinate ");
                         var startPosFind = grid.getCoordinates();
                         if (startPosFind == null) continue;
 
-                        grid.findRectanglePrompt(startPosFind);
+                        try
+                        {
+                            var resultfind = grid.findRectanglePrompt(startPosFind);
+                            if (resultfind != null)
+                            {
+                                Console.WriteLine($"Rectangle {resultfind.index.ToString()} found!");
+                                Console.ReadKey();
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey();
+                        }
                         break;
                     case '3':
                         Console.Write("Enter Target Coordinate ");
                         var startPosRemove = grid.getCoordinates();
                         if (startPosRemove == null) continue;
 
-                        grid.removeRectangle(startPosRemove);
+                        try
+                        {
+                            var resultrem = grid.removeRectangle(startPosRemove);
+                            if (resultrem)
+                            {
+                                Console.WriteLine("Rectangle removed!");
+                                Console.ReadKey();
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey();
+                        }
                         break;
                     case '4':
                         grid.clear();

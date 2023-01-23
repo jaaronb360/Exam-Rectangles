@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Rectangles
 {
-    class GridManager
+    public class GridManager
     {
         private RectangleItem Grid { get; set; }
         private List<RectangleItem> Rectangles { get; set; }
@@ -18,6 +18,12 @@ namespace Rectangles
 
         public void setSize(Coordinate i)
         {
+            if (i.X < 5 || i.X > 25 || i.Y < 5 || i.Y > 25)
+            {
+                throw new Exception("Invalid grid size");
+            }
+
+
             this.Grid.initialize(i.X, i.Y, 0, 0);
         }
 
@@ -112,14 +118,12 @@ namespace Rectangles
             this.Rectangles.Clear();
         }
 
-        public void addRectangle(Coordinate startPos, Coordinate rectSize)
+        public bool addRectangle(Coordinate startPos, Coordinate rectSize)
         {
 
             if (!startPos.isWithingrid(this.Grid))
             {
-                Console.WriteLine("Invalid starting position!");
-                Console.ReadKey();
-                return;
+                throw new Exception("Invalid starting position!");
             }
 
             var endPoint = new Coordinate()
@@ -130,9 +134,7 @@ namespace Rectangles
 
             if (!endPoint.isWithingrid(this.Grid))
             {
-                Console.WriteLine("Rectangle size going out of bounds.");
-                Console.ReadKey();
-                return;
+                throw new Exception("Rectangle size going out of bounds.");
             }
 
 
@@ -143,9 +145,7 @@ namespace Rectangles
                     var existingRect = this.findRectangle(coordX, coordY);
                     if (existingRect != null)
                     {
-                        Console.WriteLine("Rectangle is going to overlap Rectangle " + existingRect.index.ToString());
-                        Console.ReadKey();
-                        return;
+                        throw new Exception("Rectangle is going to overlap Rectangle " + existingRect.index.ToString());
                     }
                 }
             }
@@ -160,58 +160,47 @@ namespace Rectangles
             });
 
 
-            Console.WriteLine("Rectangle Added!");
-            Console.ReadKey();
-            return;
+            return true;
         }
 
-        public void findRectanglePrompt(Coordinate target)
+        public RectangleItem findRectanglePrompt(Coordinate target)
         {
 
             if (!target.isWithingrid(this.Grid))
             {
-                Console.WriteLine("Invalid Target Coordinate!");
-                Console.ReadKey();
-                return;
+                throw new Exception("Invalid Target Coordinate!");
+            
             }
 
             var rectangleFind = this.findRectangle(target.X, target.Y);
 
             if (rectangleFind == null)
             {
-                Console.WriteLine("No rectangle found");
-                Console.ReadKey();
-                return;
+                throw new Exception("No rectangle found");
+             
             }
+            return rectangleFind;
 
-
-            Console.WriteLine("You found rectangle " + rectangleFind.index.ToString());
-            Console.ReadKey();
         }
 
 
-        public void removeRectangle(Coordinate target)
+        public bool removeRectangle(Coordinate target)
         {
             if (!target.isWithingrid(this.Grid))
             {
-                Console.WriteLine("Invalid Target Coordinate!");
-                Console.ReadKey();
-                return;
+                throw new Exception("Invalid Target Coordinate!");
             }
 
             var rectangleRemove = this.findRectangle(target.X, target.Y);
 
             if (rectangleRemove == null)
             {
-                Console.WriteLine("No rectangle found");
-                Console.ReadKey();
-                return;
+                throw new Exception("No rectangle found");
             }
 
             this.Rectangles = this.Rectangles.Where(x => x.index != rectangleRemove.index).ToList();
 
-            Console.WriteLine("Rectangle " + rectangleRemove.index.ToString() + " removed.");
-            Console.ReadKey();
+            return true;
         }
     }
 }
