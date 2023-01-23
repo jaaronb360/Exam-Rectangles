@@ -7,14 +7,20 @@ namespace Rectangles
 {
     class GridManager
     {
-        public RectangleItem Grid { get; set; }
-        public List<RectangleItem> Rectangles { get; set; }
+        private RectangleItem Grid { get; set; }
+        private List<RectangleItem> Rectangles { get; set; }
 
         public GridManager()
         {
             Grid = new RectangleItem();
             Rectangles = new List<RectangleItem>();
         }
+
+        public void setSize(Coordinate i)
+        {
+            this.Grid.initialize(i.X, i.Y, 0, 0);
+        }
+
         public void render()
         {
             for (var coordY = 0; coordY < Grid.SizeY; coordY++)
@@ -99,6 +105,11 @@ namespace Rectangles
                 return newCoord;
             } while (true);
           
+        }
+
+        public void clear()
+        {
+            this.Rectangles.Clear();
         }
 
         public void addRectangle(Coordinate startPos, Coordinate rectSize)

@@ -30,7 +30,7 @@ namespace Rectangles
 
             } while (true);
 
-            grid.Grid.initialize(gridSize.X, gridSize.Y, 0, 0);
+            grid.setSize(gridSize);
 
             do
             {
@@ -78,7 +78,7 @@ namespace Rectangles
                         grid.removeRectangle(startPosRemove);
                         break;
                     case '4':
-                        grid.Rectangles.Clear();
+                        grid.clear();
                         Console.WriteLine("All Rectangles removed.");
                         Console.ReadKey();
                         continue;
